@@ -1,0 +1,49 @@
+﻿@page
+@model PagesMovie.Pages.Players.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Player</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Player.ID" class="control-label"></label>
+                <input asp-for="Player.ID" class="form-control" />
+                <span asp-validation-for="Player.ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Player.playerName" class="control-label"></label>
+                <input asp-for="Player.playerName" class="form-control" />
+                <span asp-validation-for="Player.playerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Player.inGame" class="control-label"></label>
+                <input asp-for="Player.inGame" class="form-control" />
+                <span asp-validation-for="Player.inGame" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Player.Rating" class="control-label"></label>
+                <input asp-for="Player.Rating" class="form-control" />
+                <span asp-validation-for="Player.Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

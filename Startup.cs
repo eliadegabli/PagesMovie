@@ -29,6 +29,9 @@ namespace PagesMovie
 
             services.AddDbContext<PagesMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PagesMovieContext")));
+
+            services.AddDbContext<PagePlayerContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("PagePlayerContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

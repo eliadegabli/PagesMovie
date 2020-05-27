@@ -7,14 +7,13 @@ using PagesMovie.Models;
 
 namespace PagesMovie.Data
 {
-    public class PagesMovieContext : DbContext
+    public class PagePlayerContext : DbContext
     {
-        public PagesMovieContext (DbContextOptions<PagesMovieContext> options)
+        public PagePlayerContext (DbContextOptions<PagePlayerContext> options)
             : base(options)
         {
         }
 
-        public DbSet<PagesMovie.Models.Movie> Movie { get; set; }
-
+        public DbSet<PagesMovie.Models.Player> Player { get; set; }
     }
 }
