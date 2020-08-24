@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -31,34 +32,36 @@ namespace PagesMovie.Pages.Players
         public async Task OnGetAsync()
         {
             Player = await _context.Player.ToListAsync();
-			getRandomGRP(Player);
 
-        }
+			getRandomGRP();
+			
+			
+		}
 
-		public void getRandomGRP(IList<Player> Player)
+		public void getRandomGRP()
 		{
-
-				
+				ArrayList level = new ArrayList();
 				Group1 = new ArrayList();
 				Group2 = new ArrayList();
 				Group3 = new ArrayList();
 				int random;
-				ArrayList level = new ArrayList();
+				
 				for (int i = 0; i < 5; i++)
 				{
 					level = getLevel((i + 1), Player);
 					random = (int)(r.Next(0,3));
 					Group1.Add(level[random]);
-					level.Remove(random);
+					level.RemoveAt(random);
 					random = (int)(r.Next(0, 2));
 					Group2.Add(level[random]);
-					level.Remove(random);
+					level.RemoveAt(random);
 					Group3.Add(level[0]);
-				}
+					level = new ArrayList();
+			}
 
-				//shuffleArray(Group1);
-				//shuffleArray(Group2);
-				//shuffleArray(Group3);
+				shuffleArray(Group1);
+				shuffleArray(Group2);
+				shuffleArray(Group3);
 			
 
 		}
@@ -66,21 +69,22 @@ namespace PagesMovie.Pages.Players
 
 		public ArrayList getLevel(int num, IList<Player> group)
 		{
+			ArrayList levelTemp = new ArrayList();
 			int s = 0;
-			ArrayList level = new ArrayList();
 			for (int i = 0; i < group.Count; i++)
 			{
 				if (group[i].Rating == num)
 				{
 					if (group[i].inGame == 1)
 					{
-						level.Add(group[i].playerName);
+						levelTemp.Add(group[i].playerName);
+						//Player.RemoveAt(i);
 						s++;
 					}
 
 				}
 			}
-			return level;
+			return levelTemp;
 		}
 
 		public ArrayList shuffleArray(ArrayList ar)
