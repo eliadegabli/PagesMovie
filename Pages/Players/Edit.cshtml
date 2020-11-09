@@ -21,9 +21,9 @@
                 <span asp-validation-for="Player.playerName" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Player.inGame" /> @Html.DisplayNameFor(model => model.Player.inGame)
-                </label>
+                <label asp-for="Player.inGame" class="control-label"></label>
+                <input class="form-control" asp-for="Player.inGame" />
+                <span asp-validation-for="Player.inGame" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Player.Rating" class="control-label"></label>

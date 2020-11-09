@@ -53,6 +53,7 @@ namespace PagesMovie.Pages.Players
             try
             {
                 await _context.SaveChangesAsync();
+                
             }
             catch (DbUpdateConcurrencyException)
             {

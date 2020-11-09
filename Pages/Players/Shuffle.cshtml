@@ -6,29 +6,45 @@
 
 <h1>Shuffle</h1>
 
-@for (int i = 0; i < 5; i++)
+<p>
+    <a asp-page="Shuffle">חלק שוב</a>
+</p>
+
+@if (Model.numOfActive == 15)
 {
-    <tr>
-        <td>
-            @Model.Group1[i];
-        </td>
-    </tr>
+    for (int i = 0; i < 5; i++)
+    {
+        <tr>
+            <td>
+                @Model.Group1[i]
+            </td>
+        </tr>
+    }
+    <br />
+    @for (int i = 0; i < 5; i++)
+    {
+        <tr>
+            <td>
+                @Model.Group2[i]
+            </td>
+        </tr>
+
+    }
+    <br />
+    @for (int i = 0; i < 5; i++)
+    {
+        <tr>
+            <td>
+                @Model.Group3[i]
+            </td>
+        </tr>
+
+    }
 }
-<br />
-@for (int i = 0; i < 5; i++)
-{
+else {
     <tr>
         <td>
-            @Model.Group2[i];
-        </td>
-    </tr>
-}
-<br />
-@for (int i = 0; i < 5; i++)
-{
-    <tr>
-        <td>
-            @Model.Group3[i];
+            @Model.errorMassage
         </td>
     </tr>
 }

@@ -22,5 +22,8 @@ namespace PagesMovie.Models
         [Display(Name = "רמה")]
         public int Rating { get; set; }
 
+        public static int numOfInGame = 0;
+
+
     }
 }

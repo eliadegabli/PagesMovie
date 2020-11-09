@@ -39,6 +39,7 @@ namespace PagesMovie.Pages.Players
             _context.Player.Add(Player);
             await _context.SaveChangesAsync();
 
+
             return RedirectToPage("./Index");
         }
     }

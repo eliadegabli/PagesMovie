@@ -13,6 +13,8 @@
 <p>
     <a asp-page="Shuffle">חלק לקבוצות</a>
 </p>
+<div>מספר שחקנים פעילים - @Model.numofii</div>
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -31,27 +33,58 @@
             <th></th>
         </tr>
     </thead>
+    
     <tbody>
-@foreach (var item in Model.Player) {
-        <tr>
-            <td>
-               @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.playerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.inGame)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Player)
+        {
+            @if (item.inGame == 1)
+            {
+                <tr style="background: #eefdd8;">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.playerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.inGame)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">ערוך שחקן</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">פרטים</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">מחק</a>
+                    </td>
+                </tr>
+            }
+        }
+
+        @foreach (var item in Model.Player)
+        {
+            @if (item.inGame == 0)
+            {
+                <tr style="background: #f4d0d0;">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.playerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.inGame)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">ערוך שחקן</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">פרטים</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">מחק</a>
+                    </td>
+                </tr>
+            }
+        }
     </tbody>
 </table>

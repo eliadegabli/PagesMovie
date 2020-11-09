@@ -20,7 +20,9 @@ namespace PagesMovie.Pages.Players
 		public ArrayList Group3 { get; set; }
 
 		public Random r = new Random();
-		public ShuffleModel(Data.PagePlayerContext context)
+        public string errorMassage { get; set; }
+        public int numOfActive { get; set; }
+        public ShuffleModel(Data.PagePlayerContext context)
         {
             _context = context;
 
@@ -40,16 +42,26 @@ namespace PagesMovie.Pages.Players
 
 		public void getRandomGRP()
 		{
-				ArrayList level = new ArrayList();
-				Group1 = new ArrayList();
-				Group2 = new ArrayList();
-				Group3 = new ArrayList();
-				int random;
-				
+			numOfActive = 0;
+			ArrayList level = new ArrayList();
+			Group1 = new ArrayList();
+			Group2 = new ArrayList();
+			Group3 = new ArrayList();
+			int random;
+
+			for(int i=0;i< Player.Count; i++)
+            {
+				if (Player[i].inGame == 1) {
+					numOfActive++;
+				}
+			}
+
+			if (numOfActive == 15)
+			{
 				for (int i = 0; i < 5; i++)
 				{
 					level = getLevel((i + 1), Player);
-					random = (int)(r.Next(0,3));
+					random = (int)(r.Next(0, 3));
 					Group1.Add(level[random]);
 					level.RemoveAt(random);
 					random = (int)(r.Next(0, 2));
@@ -57,12 +69,14 @@ namespace PagesMovie.Pages.Players
 					level.RemoveAt(random);
 					Group3.Add(level[0]);
 					level = new ArrayList();
-			}
-
+				}
 				shuffleArray(Group1);
 				shuffleArray(Group2);
 				shuffleArray(Group3);
-			
+			}
+			else {
+				errorMassage = "אין אפשרות לחלק - צריך 15 שחקנים פעילים";
+			}
 
 		}
 
@@ -70,7 +84,7 @@ namespace PagesMovie.Pages.Players
 		public ArrayList getLevel(int num, IList<Player> group)
 		{
 			ArrayList levelTemp = new ArrayList();
-			int s = 0;
+			
 			for (int i = 0; i < group.Count; i++)
 			{
 				if (group[i].Rating == num)
@@ -79,7 +93,6 @@ namespace PagesMovie.Pages.Players
 					{
 						levelTemp.Add(group[i].playerName);
 						//Player.RemoveAt(i);
-						s++;
 					}
 
 				}

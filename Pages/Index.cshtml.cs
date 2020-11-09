@@ -17,24 +17,24 @@ namespace PagesMovie.Pages
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-            runQuery();
+            //runQuery();
         }
 
-        public void runQuery()
+        /*public void runQuery()
         {
 
             string MySqlConnectionString = "datasource=localhost;port=3306;username=user_sms_ins;password='bgQ87as@kf';database=db_sms_ins";
-            MySqlConnection databaseConnection = new MySqlConnection(MySqlConnectionString);
+            //MySqlConnection databaseConnection = new MySqlConnection(MySqlConnectionString);
 
-            MySqlCommand commandDatabase = new MySqlCommand("select * From Crm_agents", databaseConnection);
-            commandDatabase.CommandTimeout = 60;
+           // MySqlCommand commandDatabase = new MySqlCommand("select * From Crm_agents", databaseConnection);
+            //commandDatabase.CommandTimeout = 60;
 
             try
             {
                 Console.Write("ddddddd");   
-                databaseConnection.Open();
+                //databaseConnection.Open();
 
-                MySqlDataReader MyReader = commandDatabase.ExecuteReader();
+               // MySqlDataReader MyReader = commandDatabase.ExecuteReader();
 
                 if (MyReader.HasRows)
                 {
@@ -52,7 +52,7 @@ namespace PagesMovie.Pages
             {
                 Console.WriteLine("Error = " + e.Message);
             }
-        }
+        }*/
 
         public void OnGet()
         {

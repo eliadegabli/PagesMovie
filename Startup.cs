@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using PagesMovie.Data;
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace PagesMovie
 {
@@ -30,8 +31,13 @@ namespace PagesMovie
             services.AddDbContext<PagesMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PagesMovieContext")));
 
-            services.AddDbContext<PagePlayerContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("PagePlayerContext")));
+            /*services.AddDbContext<PagePlayerContext>(options =>
+                    options.UseMySql("Server=localhost;user=admin;password=Ddegab444;database=Player"));*/
+
+           services.AddDbContext<PagePlayerContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("PlayerContextExternal")));
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -20,7 +20,7 @@ namespace PagesMovie
         public IndexModel(PagesMovie.Data.PagesMovieContext context)
         {
             _context = context;
-            ans = runQuery();
+            
         }
 
         public string ans="empty";
@@ -53,42 +53,6 @@ namespace PagesMovie
             Movie = await movies.ToListAsync();
         }
 
-        public string runQuery()
-        {
-            MySqlCommand commandDataba;
-            MySqlDataAdapter datadapter;
-
-            string MySqlConnectionString = "datasource=31.168.252.120;port=3306;username=user_sms_ins;password='bgQ87as@kf';database=db_sms_ins";
-            MySqlConnection databaseConnection = new MySqlConnection(MySqlConnectionString);
-
-            MySqlCommand commandDatabase = new MySqlCommand("select * From Crm_agents", databaseConnection); 
-            commandDatabase.CommandTimeout = 60;
-
-            try
-            {
-               ans = "steel empty";
-                databaseConnection.Open();
-
-                MySqlDataReader MyReader = commandDatabase.ExecuteReader();
-
-                if (MyReader.HasRows)
-                {
-                    ans = "steel empty 2";
-                    while (MyReader.Read())
-                    {
-                       ans = (MyReader.GetString(0) + " - " + MyReader.GetString(1) + " - " + MyReader.GetString(2) + " - " + MyReader.GetString(3) + " - " + MyReader.GetString(4));
-                    }
-                }
-                else
-                {
-                    ans = "steel empty 3";
-                }
-            }
-            catch (Exception e)
-            {
-                ans = "steel empty - error";
-            }
-            return ans;
-        }
+       
     }
 }
